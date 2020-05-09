@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card card-widget">
+        <div class="card-header">
+          <div class="user-block">
+            <span class="username">
+                <a href="">{{ comment.user }}</a>
+            </span>
+            <span class="description">{{ comment.createdAt | date:'shortTime' }}</span>
+            <!-- 7:30 PM Today -->
+          </div>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>{{ comment.text }}</p>
+          
+          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Responder</button> &nbsp;
+          <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+          <span class="float-right text-muted">45 likes - {{ comment.replies.length }} respostas</span>
+        </div>
+      </div>
+    </div>
+  </div>
