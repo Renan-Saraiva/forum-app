@@ -10,6 +10,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { ConfigService } from './services/config.service';
+import { TalkerComponent } from './components/talker/talker.component';
+import { FormsModule } from '@angular/forms';
 
 const appConfig = (configService: ConfigService) => {
   return () => {
@@ -24,12 +26,14 @@ const appConfig = (configService: ConfigService) => {
     FooterComponent,
     HomeComponent,
     NotFoundComponent,
-    CommentComponent
+    CommentComponent,
+    TalkerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     ConfigService, {

@@ -1,0 +1,23 @@
+<div class="card card-olive">
+    <div class="overlay" *ngIf="running">
+        <i class="fas fa-4x fa-sync-alt fa-spin"></i>
+    </div>
+    <div class="card-header">
+        <h3 class="card-title">Realize um comentário</h3>
+    </div>
+    <form #f="ngForm" (ngSubmit)="CreateComment(f)" novalidate>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="nickname">Nickname</label>
+                <input name="user" ngModel required #first="ngModel" class="form-control" id="nickname" placeholder="Digite seu Nickname">
+            </div>
+            <div class="form-group">
+                <label>Comentário</label>
+                <textarea name="text" ngModel required class="form-control" rows="3" placeholder="Faça o seu comentário..."></textarea>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-info float-right">Comentar</button>
+        </div>
+    </form>
+</div>

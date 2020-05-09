@@ -1,1 +1,14 @@
-<app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+<div class="callout callout-success">
+    <h5>Não existe ninguem conversando por aqui</h5>
+    <p>Fique a vontade para iniciar uma discussão!</p>
+</div>
+<div class="row" *ngFor="let comment of comments">
+    <div class="col-12">
+        <app-comment [comment]="comment"></app-comment>
+    </div>            
+</div>
+<div class="row">
+    <div class="col-12">
+        <app-talker></app-talker>
+    <div>            
+</div>

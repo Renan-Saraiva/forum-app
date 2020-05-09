@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "forum-app"
+    }
+  },
+  "defaultProject": "forum-app",
+  "cli": {
+    "analytics": "b6484140-d2a4-4b23-8b19-0a245ca1f39e"
+  }
 }

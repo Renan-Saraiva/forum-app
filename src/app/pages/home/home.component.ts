@@ -14,10 +14,8 @@ export class HomeComponent implements OnInit {
   constructor(private commentsService: CommentsService) { }
 
   ngOnInit(): void {
-    this.commentsService.List().subscribe(
+    this.commentsService.ListAll().subscribe(
       (comments) => {
-
-        console.log(comments);
         this.comments = comments;
       }
     )
