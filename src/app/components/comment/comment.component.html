@@ -1,8 +1,9 @@
 <div class="card card-widget">
   <div class="card-header">
     <div class="user-block">
+      <img class="img-comment" src="assets/images/comment.png" alt="Comment image">
       <span class="username">
-        <a href="">{{ comment.user }}</a>
+        <a [routerLink]="['/comment/', comment.id]">{{ comment.user }}</a>
       </span>
       <span class="description">{{ comment.createdAt | date }}</span>
       <!-- 7:30 PM Today -->
@@ -11,16 +12,42 @@
       <button type="button" class="btn btn-tool" data-card-widget="collapse">
         <i class="fas fa-minus"></i>
       </button>
-      <button type="button" class="btn btn-tool" data-card-widget="remove">
-        <i class="fas fa-times"></i>
-      </button>
     </div>
   </div>
   <div class="card-body">
     <p>{{ comment.text }}</p>
-
-    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Responder</button> &nbsp;
-    <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+    <a [routerLink]="['/comment/', comment.id]" type="button" class="btn btn-default btn-sm" *ngIf="!loadReplies">
+      <i class="fas fa-comments"></i>&nbsp;&nbsp;Respostas</a> 
+    <a [routerLink]="['/home']" type="button" class="btn btn-default btn-sm" *ngIf="loadReplies">
+      <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Voltar</a> 
+    &nbsp;
+    <button type="button" class="btn btn-primary btn-sm"><i class="far fa-thumbs-up"></i></button>
     <span class="float-right text-muted">45 likes - {{ comment.replies.length }} respostas</span>
+  </div>
+  <div class="card-footer card-comments" *ngIf="loadReplies">    
+    <div class="overlay dark" style="height: 200px;" *ngIf="running">
+      <i class="fas fa-3x fa-sync-alt fa-spin"></i>    
+    </div>
+    <div class="callout callout-success" *ngIf="comment.replies.length == 0 && !running  && !error">
+        <h5>Não existe ninguém conversando por aqui</h5>
+        <p>Fique a vontade para iniciar uma discussão!</p>
+    </div>
+    <div class="callout callout-danger" *ngIf="!running && error">
+        <h5>Ops... Ocorreu um erro ao recuperar as respostas!</h5>
+        <p>Tente novamente mais tarde.</p>
+    </div>
+    <div class="card-comment" *ngFor="let reply of comment.replies">
+      <img class="img-sm" src="assets/images/reply.png" alt="User Image">
+      <div class="comment-text">
+        <span class="username">
+          {{ reply.user }}
+          <span class="text-muted float-right">{{ reply.createdAt | date }}</span>
+        </span>
+        {{ reply.text }}
+      </div>
+    </div>
+  </div>
+  <div class="card-footer" *ngIf="loadReplies">
+    <app-talker [reply-to]="comment.id" (onComment)="addReply($event)"></app-talker>
   </div>
 </div>

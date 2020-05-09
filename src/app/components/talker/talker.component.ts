@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class TalkerComponent implements OnInit {
 
   running: boolean = false;
+  error: boolean = false;
 
   @Output() onComment: EventEmitter<Comment> = new EventEmitter();
   @Input("reply-to") replyCommentId: string;
@@ -22,16 +23,17 @@ export class TalkerComponent implements OnInit {
 
   }
 
-  CreateComment(f: NgForm) {
+  CreateComment(form: NgForm) {
     this.running = true;
-    this.PostComment(f.value).subscribe(
+    this.error = false;
+    this.PostComment(form.value).subscribe(
         comment => {
           this.onComment.emit(comment)
-          this.RequestEnd();
+          this.RequestEnd(form);
         },
         err => {
-          console.log(err)
-          this.RequestEnd();
+          this.error = true;
+          this.RequestEnd(form);
         }
       )
   }
@@ -43,7 +45,8 @@ export class TalkerComponent implements OnInit {
     return this.commentsService.Add(comment);
   }
 
-  private RequestEnd() {
+  private RequestEnd(form: NgForm) {
+    form.reset();
     this.running = false;
   }
 }

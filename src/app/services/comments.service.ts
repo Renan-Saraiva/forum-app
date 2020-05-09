@@ -24,8 +24,16 @@ export class CommentsService {
       );
   }
 
-  public ListReplies(commentId: string) {
-    return this.httpClient.get<Comment[]>(`${this.baseUrl}/${commentId}/replies`)
+
+  public Get(commentId: string): Observable<Comment> {
+    return this.httpClient.get<Comment>(`${this.baseUrl}/${commentId}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  public GetReplies(commentId: string): Observable<Comment> {
+    return this.httpClient.get<Comment>(`${this.baseUrl}/${commentId}/replies`)
       .pipe(
         catchError(this.handleError)
       );

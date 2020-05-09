@@ -12,6 +12,8 @@ import { CommentComponent } from './components/comment/comment.component';
 import { ConfigService } from './services/config.service';
 import { TalkerComponent } from './components/talker/talker.component';
 import { FormsModule } from '@angular/forms';
+import { CommentViewComponent } from './pages/comment-view/comment-view.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const appConfig = (configService: ConfigService) => {
   return () => {
@@ -27,7 +29,9 @@ const appConfig = (configService: ConfigService) => {
     HomeComponent,
     NotFoundComponent,
     CommentComponent,
-    TalkerComponent
+    TalkerComponent,
+    CommentViewComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,9 @@ import { Comment } from 'src/app/models/comment';
 })
 export class HomeComponent implements OnInit {
 
-  comments: Comment[] = [];
+  public running: boolean = true;
+  public comments: Comment[] = [];
+  public error: boolean = false;
 
   constructor(private commentsService: CommentsService) { }
 
@@ -17,7 +19,20 @@ export class HomeComponent implements OnInit {
     this.commentsService.ListAll().subscribe(
       (comments) => {
         this.comments = comments;
+        this.RequestEnd();
+      },
+      err => { 
+        this.error = true;
+        this.RequestEnd();
       }
     )
+  }
+  
+  addComment(comment: Comment) {
+    this.comments.push(comment);
+  }
+
+  private RequestEnd() {
+    this.running = false;
   }
 }

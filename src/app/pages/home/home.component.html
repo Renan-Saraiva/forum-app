@@ -1,14 +1,23 @@
-<div class="callout callout-success">
-    <h5>Não existe ninguem conversando por aqui</h5>
+<div class="row" *ngIf="running">
+    <div class="col-12">
+        <app-loading></app-loading>
+    </div>
+</div>
+<div class="callout callout-success" *ngIf="comments.length == 0 && !running  && !error">
+    <h5>Não existe ninguém conversando por aqui</h5>
     <p>Fique a vontade para iniciar uma discussão!</p>
+</div>
+<div class="callout callout-danger" *ngIf="!running && error">
+    <h5>Ops... Ocorreu um erro ao recuperar os comentários!</h5>
+    <p>Tente novamente mais tarde.</p>
 </div>
 <div class="row" *ngFor="let comment of comments">
     <div class="col-12">
         <app-comment [comment]="comment"></app-comment>
-    </div>            
+    </div>
 </div>
 <div class="row">
     <div class="col-12">
-        <app-talker></app-talker>
-    <div>            
+        <app-talker (onComment)="addComment($event)"></app-talker>
+    </div>
 </div>

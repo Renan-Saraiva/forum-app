@@ -1,3 +1,7 @@
 .user-block .description, .user-block .username {
-    margin-left: unset !important;
+    margin-left: 40px !important;
+}
+.user-block  .img-comment {
+    width: 35px;
+    height: 35px;
 }
