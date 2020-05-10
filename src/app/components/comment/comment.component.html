@@ -15,14 +15,22 @@
     </div>
   </div>
   <div class="card-body">
+    
     <p>{{ comment.text }}</p>
+    
     <a [routerLink]="['/comment/', comment.id]" type="button" class="btn btn-default btn-sm" *ngIf="!loadReplies">
-      <i class="fas fa-comments"></i>&nbsp;&nbsp;Respostas</a> 
+      <i class="fas fa-comments"></i>&nbsp;&nbsp;Respostas
+    </a> 
+
     <a [routerLink]="['/home']" type="button" class="btn btn-default btn-sm" *ngIf="loadReplies">
-      <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Voltar</a> 
+      <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Voltar
+    </a> 
     &nbsp;
-    <button type="button" class="btn btn-primary btn-sm"><i class="far fa-thumbs-up"></i></button>
-    <span class="float-right text-muted">45 likes - {{ comment.replies.length }} respostas</span>
+    <button type="button" class="btn btn-primary btn-sm" (click)="Like()" [disabled]="runningLike">
+      <i [ngClass]="{'far fa-thumbs-up': !runningLike, 'fas fa-spin fa-sync-alt': runningLike}"></i>
+    </button>
+
+    <span class="float-right text-muted">{{ comment.likes }} likes - {{ comment.replies.length }} respostas</span>    
   </div>
   <div class="card-footer card-comments" *ngIf="loadReplies">    
     <div class="overlay dark" style="height: 200px;" *ngIf="running">
@@ -48,6 +56,6 @@
     </div>
   </div>
   <div class="card-footer" *ngIf="loadReplies">
-    <app-talker [reply-to]="comment.id" (onComment)="addReply($event)"></app-talker>
+    <app-talker [reply-to]="comment.id" (onComment)="AddReply($event)"></app-talker>
   </div>
 </div>

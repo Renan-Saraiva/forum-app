@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/models/comment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment-view',
@@ -14,7 +15,7 @@ export class CommentViewComponent implements OnInit {
   error: boolean = false;
   comment: Comment;
 
-  constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private commentsService: CommentsService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -33,6 +34,9 @@ export class CommentViewComponent implements OnInit {
         this.RequestEnd();
       },
       err => {
+        if (err.status == 404){
+          this.router.navigate(['/not-found']);
+        }
         this.error = true;
         this.RequestEnd();
       }

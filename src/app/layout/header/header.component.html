@@ -1,15 +1,21 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-  <div class="container">
+  <div class="container-fluid">
     <a [routerLink]="['/home']" class="navbar-brand">
       <img src="assets/images/brand.png" alt="Bexs Forum" class="brand-image">
       <span class="brand-text font-weight-light">&nbsp; Bexs Forum</span>
     </a>
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+    <form #form="ngForm" class="form-inline ml-3" (ngSubmit)="Pesquisar(form)">
+      <div class="input-group input-group-xl">
+        <select #orderBy (change)="OrderByChange(orderBy.value)" class="form-control">
+          <option *ngFor="let option of orderOptions" [value]="option.id">{{option.name}}</option>
+        </select>
+      </div>
+      &nbsp;&nbsp;
+      <div class="input-group input-group-xl">
+        <input name="text" ngModel required class="form-control form-control-navbar" type="search" placeholder="Pesquise por uma pergunta">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
+          <button class="btn btn-navbar">
+            <i class="fas fa-search text-olive"></i>
           </button>
         </div>
       </div>

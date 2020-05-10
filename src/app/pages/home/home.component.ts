@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/models/comment';
+import { ActivatedRoute } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,28 @@ export class HomeComponent implements OnInit {
   public comments: Comment[] = [];
   public error: boolean = false;
 
-  constructor(private commentsService: CommentsService) { }
+  constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService) { }
 
   ngOnInit(): void {
-    this.commentsService.ListAll().subscribe(
+    this.activatedRoute.queryParams.subscribe(
+      query => {
+        if(query.text) {
+          this.GetPosts(query.text, query.orderBy);
+          return;
+        }
+        if(query.orderBy) {
+          this.GetPosts(undefined, query.orderBy);
+          return;
+        }
+        this.GetPosts();
+      }
+    )    
+  }
+
+  public GetPosts(textFilter?:string, orderBy?: string) {
+    this.running = true;
+    this.comments = [];
+    this.MakeRequestByFilter(textFilter, orderBy).subscribe(
       (comments) => {
         this.comments = comments;
         this.RequestEnd();
@@ -27,8 +47,18 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  public MakeRequestByFilter(textFilter?:string, orderBy?: string) {
+    if (textFilter)
+      return this.commentsService.GetPosts("text", textFilter, orderBy);
+    
+    if (orderBy)
+      return this.commentsService.GetPosts(undefined, undefined, orderBy);
+
+    return this.commentsService.GetPosts();
+  }
   
-  addComment(comment: Comment) {
+  public addComment(comment: Comment) {
     this.comments.push(comment);
   }
 

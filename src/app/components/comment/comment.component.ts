@@ -9,17 +9,16 @@ import { CommentsService } from 'src/app/services/comments.service';
 })
 export class CommentComponent implements OnInit {
 
-
   @Input("load-replies") loadReplies: boolean = false;
   @Input() comment: Comment;
 
   public running = false;
   public error = false;
+  public runningLike = false;
 
   constructor(private commentsService: CommentsService) { }
 
   ngOnInit(): void {
-
     if (this.loadReplies) {
       this.LoadReplies();
     }
@@ -40,12 +39,28 @@ export class CommentComponent implements OnInit {
     )
   }
 
-  public addReply(comment: Comment) {
-    this.comment.replies.push(comment);
-  }
-
   private RequestEnd() {
     this.running = false;
   }
 
+  public AddReply(comment: Comment) {
+    this.comment.replies.push(comment);
+  }
+
+  public Like() {
+    this.runningLike = true;
+    this.commentsService.Like(this.comment.id).subscribe(
+      () => { 
+        this.comment.likes++;
+        this.RequestLikeEnd();
+      },        
+      (err) => {
+        this.RequestLikeEnd();
+      }
+    );
+  }
+
+  private RequestLikeEnd() {
+    this.runningLike = false;
+  }
 }

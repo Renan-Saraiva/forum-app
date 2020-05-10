@@ -19,9 +19,7 @@ export class TalkerComponent implements OnInit {
 
   constructor(private commentsService: CommentsService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit() { }
 
   CreateComment(form: NgForm) {
     this.running = true;
