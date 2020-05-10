@@ -1,5 +1,5 @@
 {    
     "forumApi" : {
-        "url": "http://localhost:8080/api"
+        "url": "https://renan-saraiva-forum-api.herokuapp.com/api"
     }
 }
