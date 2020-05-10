@@ -5,8 +5,7 @@
       <span class="username">
         <a [routerLink]="['/comment/', comment.id]">{{ comment.user }}</a>
       </span>
-      <span class="description">{{ comment.createdAt | date }}</span>
-      <!-- 7:30 PM Today -->
+      <span class="description">{{ comment.createdAt | date:'short' }}</span>
     </div>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -33,7 +32,7 @@
     <span class="float-right text-muted">{{ comment.likes }} likes - {{ comment.replies.length }} respostas</span>    
   </div>
   <div class="card-footer card-comments" *ngIf="loadReplies">    
-    <div class="overlay dark" style="height: 200px;" *ngIf="running">
+    <div id="load" class="overlay dark" *ngIf="running">
       <i class="fas fa-3x fa-sync-alt fa-spin"></i>    
     </div>
     <div class="callout callout-success" *ngIf="comment.replies.length == 0 && !running  && !error">
@@ -49,7 +48,7 @@
       <div class="comment-text">
         <span class="username">
           {{ reply.user }}
-          <span class="text-muted float-right">{{ reply.createdAt | date }}</span>
+          <span class="text-muted float-right">{{ reply.createdAt | date:'short' }}</span>
         </span>
         {{ reply.text }}
       </div>
