@@ -1,6 +1,6 @@
 # ForumApp
 
-Este é um forum para discussões
+Este é um fórum para discussões
 
 ## Pré-Requisitos e Configurações
 
@@ -20,7 +20,7 @@ Este é um forum para discussões
 
 ## Executar
 
-- Com o terminal de sua preferencia entra na pasta raiz do projeto
-- Execute o comando `npm install` para instalar todas as dependencias
+- Com o terminal de sua preferência entra na pasta raiz do projeto
+- Execute o comando `npm install` para instalar todas as dependências
 - Execute o comando `npm run start` para iniciar a aplicação
 - Por default a aplicação estará rodando na porta [4200](http://localhost:4200/)
