@@ -1,0 +1,5 @@
+{    
+    "forumApi" : {
+        "url": "https://renan-saraiva-forum-api.herokuapp.com/api"
+    }
+}
