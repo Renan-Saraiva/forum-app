@@ -25,6 +25,8 @@ Este é um fórum para discussões
 - Execute o comando `npm run start` para iniciar a aplicação
 - Por default a aplicação estará rodando na porta [4200](http://localhost:4200/)
 
-# Acesso
+## Acesso
 
 Atraves deste [link](https://renan-saraiva.github.io/forum-app/home) é possível acessar a aplicação. 
+
+Pode ser que haja um delay no primeiro acesso, isso é devido pois o Heroku (local aonde a API está publicada) deixa a aplicação em Sleep Mode quando a mesma fica muito tempo sem receber requisições.
