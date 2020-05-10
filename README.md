@@ -20,13 +20,13 @@ Este é um fórum para discussões
 
 ## Executar
 
-- Com o terminal de sua preferência entra na pasta raiz do projeto
-- Execute o comando `npm install` para instalar todas as dependências
-- Execute o comando `npm run start` para iniciar a aplicação
-- Por default a aplicação estará rodando na porta [4200](http://localhost:4200/)
+1. Com o terminal de sua preferência entre na pasta raiz do projeto
+2. Execute o comando `npm install` para instalar todas as dependências
+3. Execute o comando `npm run start` para iniciar a aplicação
+4. Por default a aplicação estará rodando na porta [4200](http://localhost:4200/)
 
 ## Acesso
 
 Atraves deste [link](https://renan-saraiva.github.io/forum-app/home) é possível acessar a aplicação. 
 
-Pode ser que haja um delay no primeiro acesso, isso é devido pois o Heroku (local aonde a API está publicada) deixa a aplicação em Sleep Mode quando a mesma fica muito tempo sem receber requisições.
+Pode ser que haja um delay no primeiro acesso, isso é devido pois o [Heroku](https://www.heroku.com/) (local aonde a API está publicada) deixa a aplicação em Sleep Mode quando a mesma fica muito tempo sem receber requisições.
