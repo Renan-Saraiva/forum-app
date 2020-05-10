@@ -24,3 +24,7 @@ Este é um fórum para discussões
 - Execute o comando `npm install` para instalar todas as dependências
 - Execute o comando `npm run start` para iniciar a aplicação
 - Por default a aplicação estará rodando na porta [4200](http://localhost:4200/)
+
+# Acesso
+
+Atraves deste [link](https://renan-saraiva.github.io/forum-app/home) é possível acessar a aplicação. 
