@@ -11,8 +11,16 @@
     <h5>Ops... Ocorreu um erro ao recuperar os comentários!</h5>
     <p>Tente novamente mais tarde.</p>
 </div>
-<div class="row" *ngFor="let comment of comments">
+<div class="row" *ngIf="comments.length > 0 && !running  && !error">
     <div class="col-12">
+        <div id="notReplyContainer" class="form-check form-check-inline float-right">
+            <input [(ngModel)]="notReply" class="form-check-input" type="checkbox">
+            <label class="form-check-label">Não respondidas</label>
+        </div>
+    </div>
+</div>
+<div class="row" *ngFor="let comment of comments">
+    <div class="col-12" *ngIf="!notReply || (notReply && comment.replies.length == 0)">
         <app-comment [comment]="comment"></app-comment>
     </div>
 </div>

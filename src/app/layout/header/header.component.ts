@@ -11,10 +11,13 @@ import { ThrowStmt } from '@angular/compiler';
 export class HeaderComponent implements OnInit {
   
   public orderOptions = [
+    { id: "default", name: "Mais antigas" },
     { id: "createdAt", name: "Mais recentes" },
     { id: "likes", name: "Mais curtidas" }
   ];
-  public orderBy = this.orderOptions[0].id;
+  
+  public orderBy = this.orderOptions[0].id;  
+  public text = undefined;
 
   constructor(private router: Router) { }
 
@@ -25,32 +28,23 @@ export class HeaderComponent implements OnInit {
   public OrderByChange(value) {
     this.orderBy = value;
     this.Pesquisar();
-  }  
+  }
 
   public OsSearch(form: NgForm) {
-    this.Pesquisar(form.value.text)
-    // let query: any = {
-    //   queryParams: {
-    //     orderBy: this.orderBy
-    //   }
-    // };
-    
-    // if (form.value.text)
-    //   query.queryParams.text = form.value.text;
-
-    // this.router.navigate(['/home'], query);
+    this.text = form.value.text;
+    this.Pesquisar();
   }
 
   public Pesquisar(text?: string) {
-   
-    let query: any = {
-      queryParams: {
-        orderBy: this.orderBy
-      }
+    const query: any = {
+      queryParams: { }
     };
     
-    if (text)
-      query.queryParams.text = text;
+    if (this.orderBy != "default")
+      query.queryParams.orderBy = this.orderBy ;
+
+    if (this.text)
+      query.queryParams.text = this.text;
 
     this.router.navigate(['/home'], query);
   }

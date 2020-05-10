@@ -14,21 +14,16 @@ export class HomeComponent implements OnInit {
   public running: boolean = true;
   public comments: Comment[] = [];
   public error: boolean = false;
+  public notReply: boolean = false;
+
 
   constructor(private activatedRoute: ActivatedRoute, private commentsService: CommentsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(
       query => {
-        if(query.text) {
+          this.notReply = false;
           this.GetPosts(query.text, query.orderBy);
-          return;
-        }
-        if(query.orderBy) {
-          this.GetPosts(undefined, query.orderBy);
-          return;
-        }
-        this.GetPosts();
       }
     )    
   }
@@ -49,13 +44,16 @@ export class HomeComponent implements OnInit {
   }
 
   public MakeRequestByFilter(textFilter?:string, orderBy?: string) {
-    if (textFilter)
+    if (textFilter && orderBy)
       return this.commentsService.GetPosts("text", textFilter, orderBy);
     
+    if (textFilter)
+      return this.commentsService.GetPosts("text", textFilter);
+
     if (orderBy)
       return this.commentsService.GetPosts(undefined, undefined, orderBy);
 
-    return this.commentsService.GetPosts(undefined, undefined, "createdAt");
+    return this.commentsService.GetPosts();
   }
   
   public addComment(comment: Comment) {
