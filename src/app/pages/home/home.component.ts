@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     if (orderBy)
       return this.commentsService.GetPosts(undefined, undefined, orderBy);
 
-    return this.commentsService.GetPosts();
+    return this.commentsService.GetPosts(undefined, undefined, "createdAt");
   }
   
   public addComment(comment: Comment) {

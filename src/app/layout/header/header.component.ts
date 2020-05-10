@@ -24,17 +24,33 @@ export class HeaderComponent implements OnInit {
 
   public OrderByChange(value) {
     this.orderBy = value;
+    this.Pesquisar();
   }  
 
-  public Pesquisar(form: NgForm) {
+  public OsSearch(form: NgForm) {
+    this.Pesquisar(form.value.text)
+    // let query: any = {
+    //   queryParams: {
+    //     orderBy: this.orderBy
+    //   }
+    // };
+    
+    // if (form.value.text)
+    //   query.queryParams.text = form.value.text;
+
+    // this.router.navigate(['/home'], query);
+  }
+
+  public Pesquisar(text?: string) {
+   
     let query: any = {
       queryParams: {
         orderBy: this.orderBy
       }
     };
     
-    if (form.value.text)
-      query.queryParams.text = form.value.text;
+    if (text)
+      query.queryParams.text = text;
 
     this.router.navigate(['/home'], query);
   }

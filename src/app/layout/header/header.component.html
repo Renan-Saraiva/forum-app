@@ -4,7 +4,7 @@
       <img src="assets/images/brand.png" alt="Bexs Forum" class="brand-image">
       <span class="brand-text font-weight-light">&nbsp; Bexs Forum</span>
     </a>
-    <form #form="ngForm" class="form-inline ml-3" (ngSubmit)="Pesquisar(form)">
+    <form #form="ngForm" class="form-inline ml-3" (ngSubmit)="OsSearch(form)">
       <div class="input-group input-group-xl">
         <select #orderBy (change)="OrderByChange(orderBy.value)" class="form-control">
           <option *ngFor="let option of orderOptions" [value]="option.id">{{option.name}}</option>
